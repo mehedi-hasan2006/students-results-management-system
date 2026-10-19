@@ -2,7 +2,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { LoginForm } from "@/components/portal";
 
-export const metadata: Metadata = { title: "Staff sign in" };
+export const metadata: Metadata = {
+  title: "Staff sign in",
+  robots: { index: false, follow: false },
+};
 
 export default async function LoginPage({ searchParams }: { searchParams: Promise<{ error?: string }> }) {
   const { error } = await searchParams;

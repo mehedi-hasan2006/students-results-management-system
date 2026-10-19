@@ -17,7 +17,7 @@ Copy-Item .env.example .env
 Copy-Item .env.example .env.local
 ```
 
-Edit `.env` and `.env.local`: use your MongoDB URI and generate a private `BETTER_AUTH_SECRET` with at least 32 characters. Set `ADMIN_EMAIL` and a strong `ADMIN_PASSWORD` of at least 12 characters before the first seed. `.env` configures the Express API and `.env.local` configures Next.js. Do not commit real environment values.
+Edit `.env` and `.env.local`: use your MongoDB URI and generate a private `BETTER_AUTH_SECRET` with at least 32 characters. Set `ADMIN_EMAIL` and a strong `ADMIN_PASSWORD` of at least 12 characters before the first seed. `.env` configures the Express API and `.env.local` configures Next.js. Set `NEXT_PUBLIC_SITE_URL` in `.env.local` to the public HTTPS website origin when deploying so canonical metadata, robots, and sitemap use the correct domain. Do not commit real environment values.
 
 Seed the MongoDB database and create the first administrator account:
 
@@ -70,6 +70,8 @@ Open [http://localhost:3000](http://localhost:3000). Sign in to the admin worksp
 Use administrator sign-in for all write routes. Public users can search only by exact roll number, academic session, and exam type. The API returns only published records and rate limits public result searches. Never expose MongoDB credentials, Better Auth secrets, or admin credentials to the browser. Configure TLS, strict origin values, backups, and a trusted proxy before production deployment. If the frontend/API use sibling subdomains, set `BETTER_AUTH_COOKIE_DOMAIN` to their shared parent domain so the HttpOnly session cookie reaches the server-rendered admin gate.
 
 See [API.md](./API.md) for database setup, normalized collections, authentication, access checks, and the API route reference.
+
+The interface uses Geist with Hind Siliguri as the Bengali-script fallback. Public home and notice pages are included in the generated sitemap; private workspaces, sign-in pages, and student result lookup pages are marked `noindex`.
 
 ## Implementation status
 

@@ -1,4 +1,11 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  description:
+    "Find published student results and official school notices from Meridian Academy, Bangladesh.",
+  alternates: { canonical: "/" },
+};
 
 const highlights = [
   { number: "01", title: "Verified results", text: "A private, reliable place for students and families to find published results." },
